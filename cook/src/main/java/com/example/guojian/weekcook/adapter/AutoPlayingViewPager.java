@@ -374,10 +374,10 @@ public class AutoPlayingViewPager extends FrameLayout {
             for (int i = 0; i < dotViewsList.size(); i++) {
                 if (i == p) {
                     dotViewsList.get(p).setBackgroundResource(
-                            R.mipmap.dot2);
+                            R.mipmap.dot_checked);
                 } else {
                     dotViewsList.get(i).setBackgroundResource(
-                            R.mipmap.dot1);
+                            R.mipmap.dot_no_checked);
                 }
             }
         }

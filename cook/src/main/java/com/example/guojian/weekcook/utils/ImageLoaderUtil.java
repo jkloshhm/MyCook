@@ -100,7 +100,7 @@ public class ImageLoaderUtil {
                 .cacheOnDisk(true)
                 .imageScaleType(ImageScaleType.NONE)
                 .bitmapConfig(Bitmap.Config.ARGB_8888)
-                .displayer(new RoundedBitmapDisplayer(5))
+                .displayer(new RoundedBitmapDisplayer(10))
                 .build();
         ImageLoader.getInstance().displayImage(imageUrl, mImageView, options);
     }

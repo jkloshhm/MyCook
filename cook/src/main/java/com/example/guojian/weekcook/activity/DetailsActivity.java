@@ -11,7 +11,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +47,6 @@ public class DetailsActivity extends Activity implements MyScrollView.OnScrollLi
     private static ArrayList<CookBean> cookBeanlist;
     private static ArrayList<String> cookIdList = new ArrayList<>();
     private static ProgressDialog dialog;
-    Context context;
     private String realIp;
     private CookBean cookBean;
     private ImageView mCollectImg, mDetailsImage, mShareImg;
@@ -61,10 +59,8 @@ public class DetailsActivity extends Activity implements MyScrollView.OnScrollLi
             mEndMessage, mEndMessageScreenShot;
     private MyScrollView mScrollView;
     private boolean isRed;
-    private TextView mName, mContent, mPeopleNum, mCookingTime, mTag;
+    private TextView mTitleName, mName, mContent, mPeopleNum, mCookingTime, mTag;
     private String TAG = "jkloshhm-----------DetailsActivity------";
-    private Button btn_refresh;
-    private Handler refrsh_handler;
     private WindowManager mWindowManager;
     private int screenWidth;//手机屏幕宽度
     private int mDetailsTitleHeight;//标题栏的高度
@@ -79,7 +75,7 @@ public class DetailsActivity extends Activity implements MyScrollView.OnScrollLi
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                mCollectImg.setImageDrawable(getResources().getDrawable(R.mipmap.collection_gray));
+                mCollectImg.setImageDrawable(getResources().getDrawable(R.mipmap.cook_no_collected_white));
                 isRed = false;
                 Toast.makeText(DetailsActivity.this, "已取消收藏~", Toast.LENGTH_SHORT).show();
             }
@@ -101,7 +97,7 @@ public class DetailsActivity extends Activity implements MyScrollView.OnScrollLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = getApplicationContext();
+        //context = getApplicationContext();
         setContentView(R.layout.activity_details);
         initViews();
         mShareLinearLayout.setOnClickListener(new View.OnClickListener() {
@@ -130,11 +126,13 @@ public class DetailsActivity extends Activity implements MyScrollView.OnScrollLi
 
         if (scrollY >= screenWidth - mDetailsTitleHeight) {
             mDetailsTitleLinearLayout.setBackgroundColor(getResources().getColor(R.color.red_theme));
+            mTitleName.setVisibility(View.VISIBLE);
         } else if (scrollY > 0 && scrollY <= screenWidth - mDetailsTitleHeight) {
             updateActionBarAlpha(scrollY*(255-25)/(screenWidth - mDetailsTitleHeight)+25);
             mDetailsTitleLinearLayout.setBackgroundColor(getResources().getColor(R.color.white_00FFFFFF));
         }else if (scrollY <= screenWidth - mDetailsTitleHeight) {
             mDetailsTitleLinearLayout.setBackgroundColor(getResources().getColor(R.color.white_00FFFFFF));
+            mTitleName.setVisibility(View.GONE);
         }
     }
 
@@ -165,10 +163,10 @@ public class DetailsActivity extends Activity implements MyScrollView.OnScrollLi
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private void initViews() {
+        mTitleName = (TextView) findViewById(R.id.tv_details_cook_title_name);
         mShareImg = (ImageView) findViewById(R.id.iv_share_the_cook_data);
         mScrollView = (MyScrollView) findViewById(R.id.scrollView_details);
         mDetailsTitleLinearLayout = (LinearLayout) findViewById(R.id.ll_details_title);
@@ -199,10 +197,10 @@ public class DetailsActivity extends Activity implements MyScrollView.OnScrollLi
         setUpViews();
         realIp = cookBean.getReal_ip();
         if (realIp.equals("mary")) {
-            mCollectImg.setImageDrawable(getResources().getDrawable(R.mipmap.collection_gray));
+            mCollectImg.setImageDrawable(getResources().getDrawable(R.mipmap.cook_no_collected_white));
             isRed = false;
         } else {
-            mCollectImg.setImageDrawable(getResources().getDrawable(R.mipmap.collection_red));
+            mCollectImg.setImageDrawable(getResources().getDrawable(R.mipmap.cook_collected_white));
             isRed = true;
         }
         mButtonBack.setOnClickListener(new View.OnClickListener() {
@@ -217,7 +215,7 @@ public class DetailsActivity extends Activity implements MyScrollView.OnScrollLi
                 if (isRed) {//删除
                     setCancelCollection();
                 } else {
-                    mCollectImg.setImageDrawable(getResources().getDrawable(R.mipmap.collection_red));
+                    mCollectImg.setImageDrawable(getResources().getDrawable(R.mipmap.cook_collected_white));
                     isRed = true;
                     Toast.makeText(DetailsActivity.this, "收藏成功~", Toast.LENGTH_SHORT).show();
                 }
@@ -256,6 +254,7 @@ public class DetailsActivity extends Activity implements MyScrollView.OnScrollLi
     }
 
     private void setUpViews() {
+        mTitleName.setText(cookBean.getName_cook());
         mName.setText(cookBean.getName_cook());
         String img_url = cookBean.getPic();
         ImageLoaderUtil.setPicBitmap2(mDetailsImage, img_url);
@@ -275,9 +274,7 @@ public class DetailsActivity extends Activity implements MyScrollView.OnScrollLi
         mProcessAdapter = new ProcessAdapter(this, processBeenlist);
         mListViewProcess.setAdapter(mProcessAdapter);
         setListViewHeightBasedOnChildren1(mListViewProcess);
-
     }
-
 
     public void setListViewHeightBasedOnChildren1(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();

@@ -29,7 +29,7 @@
                 android:id="@+id/bn_back_cook_list"
                 android:layout_width="9dp"
                 android:layout_height="16.5dp"
-                android:background="@mipmap/back_black" />
+                android:background="@mipmap/cook_back_white" />
         </LinearLayout>
 
         <LinearLayout

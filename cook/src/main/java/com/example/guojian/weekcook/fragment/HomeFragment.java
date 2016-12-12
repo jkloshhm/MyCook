@@ -67,13 +67,17 @@ public class HomeFragment extends Fragment {
     private MyHandler handlerSearch = new MyHandler(this);
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
-    private int imgId[] = {R.mipmap.nangua, R.mipmap.muer, R.mipmap.ou, R.mipmap.shanyao,
-            R.mipmap.baicai, R.mipmap.hongshu, R.mipmap.yangrou, R.mipmap.niurou};
+    private int imgId[] = {R.mipmap.hot_material_nangua, R.mipmap.hot_material_muer,
+            R.mipmap.hot_material_ou, R.mipmap.hot_material_shanyao,
+            R.mipmap.hot_material_baicai, R.mipmap.hot_material_hongshu,
+            R.mipmap.hot_material_yangrou, R.mipmap.hot_material_niurou};
     private String imgName[] = {"南瓜", "木耳", "藕", "山药", "白菜", "红薯", "羊肉", "牛肉"};
-    private int imgIdFood[] = {R.mipmap.image_demo, R.mipmap.muer, R.mipmap.image_demo, R.mipmap.shanyao,
-            R.mipmap.image_demo, R.mipmap.hongshu, R.mipmap.image_demo, R.mipmap.niurou};
-    private String imgNameFood[] = {"私房菜", "陕西小吃", "意大利菜", "减肥",
-            "快手菜", "北京小吃", "川菜", "美容"};
+    private int imgIdFood[] = {R.mipmap.hot_class_sifangcai, R.mipmap.hot_class_shanxixiaochi,
+            R.mipmap.hot_class_chuancai, R.mipmap.hot_class_jianfei,
+            R.mipmap.hot_class_kuaishoucai, R.mipmap.hot_class_beijingxiaochi,
+            R.mipmap.hot_class_yidalicai, R.mipmap.hot_class_meirongcai};
+    private String imgNameFood[] = {"私房菜", "陕西小吃", "川菜", "减肥",
+            "快手菜", "北京小吃", "意大利菜", "美容"};
     private String classId[] = {"303", "285", "258", "2", "304", "270", "224", "6"};
 
     private GridView mGridViewHotMaterial, mGridViewHotClassFood;
@@ -187,8 +191,6 @@ public class HomeFragment extends Fragment {
         setUpViewHotClassFood();
         return view;
     }
-
-
 
 
     private void setUpViewHotClassFood() {

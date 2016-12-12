@@ -24,7 +24,7 @@
             <ImageView
                 android:layout_width="9dp"
                 android:layout_height="16.5dp"
-                android:background="@mipmap/back_black" />
+                android:background="@mipmap/cook_back_white" />
         </LinearLayout>
 
         <LinearLayout
@@ -53,7 +53,7 @@
             <ImageView
                 android:layout_width="9dp"
                 android:layout_height="16.5dp"
-                android:background="@mipmap/back_black"
+                android:background="@mipmap/cook_back_white"
                 android:visibility="invisible"/>
         </LinearLayout>
     </LinearLayout>

@@ -10,9 +10,8 @@
 
     <ImageView
         android:id="@+id/iv_parent_item"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@mipmap/class_gongxiao" />
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
 
     <CheckedTextView
         android:id="@+id/tv_parent_item"
