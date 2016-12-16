@@ -1,16 +1,16 @@
 package com.example.guojian.weekcook.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.example.guojian.weekcook.R;
 
-public class WelcomeScreenActivity extends AppCompatActivity {
+public class WelcomeScreenActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
