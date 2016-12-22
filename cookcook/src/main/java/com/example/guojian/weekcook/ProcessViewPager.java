@@ -30,6 +30,11 @@ import java.util.List;
  */
 public class ProcessViewPager extends FrameLayout {
 
+    /**
+     * ViewPageItem点击回调接口
+     */
+    private ProcessViewPager.OnPageItemClickListener onPageItemClickListener;
+
     private final static String TAG = "ProcessViewPager";
 
     /**
@@ -81,7 +86,16 @@ public class ProcessViewPager extends FrameLayout {
         return this;
     }
 
+    public void setOnPageItemClickListener(ProcessViewPager.OnPageItemClickListener onPageItemClickListener) {
+        this.onPageItemClickListener = onPageItemClickListener;
+    }
 
+    public interface OnPageItemClickListener {
+        /**
+         * ViewPageItem点击事件回调
+         */
+        void onPageItemClick(int position, ProcessBean processBean);
+    }
     /**
      * 初始化Views 及组件UI
      */
@@ -122,8 +136,10 @@ public class ProcessViewPager extends FrameLayout {
             View view = mInflate.inflate(R.layout.item_process_viewpager, null);
             ImageView imageView = (ImageView) view.findViewById(R.id.img_item_process_pic_viewpager);
             TextView labelTitle = (TextView) view.findViewById(R.id.tv_item_process_content_viewpager);
+
             if (!TextUtils.isEmpty(processBean.getProcess_pic())) {//通过URL时使用ImageLoader加载图片
                 ImageLoaderUtil.setPicBitmap(imageView, processBean.getProcess_pic());
+
             }
             if (!TextUtils.isEmpty(processBean.getProcess_pcontent())) {//有标题数据才显示
                 labelTitle.setText(processBean.getProcess_pcontent().replace("<br />",""));

@@ -3,16 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rl_layout"
     tools:context="com.example.guojian.weekcook.activity.ProcessLargeImgActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="9/10"
-        android:gravity="center"/>
     <com.example.guojian.weekcook.ProcessViewPager
         android:id="@+id/pv_process_viewpager_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
