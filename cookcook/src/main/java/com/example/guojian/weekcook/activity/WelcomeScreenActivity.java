@@ -35,6 +35,6 @@ public class WelcomeScreenActivity extends Activity {
                 startActivity(mainIntent);
                 finish();
             }
-        }, 1000);
+        }, 5000);
     }
 }
